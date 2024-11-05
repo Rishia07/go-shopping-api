@@ -14,7 +14,7 @@ const orderController = {
   getAllOrders: async (req, res) => {
     try {
       const orders = await Order.find()
-        .populate("product")
+        .populate("product user rider")
         .sort({ createdAt: -1 });
       res.status(200).json(orders);
     } catch (err) {
