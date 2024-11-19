@@ -57,6 +57,10 @@ const riderSchema = new mongoose.Schema(
       required: [true, "Please enter a value for phoneNumber."],
       trim: true,
     },
+    profilePic: {
+      type: String,
+      trim: true,
+    },
     vehicle: {
       type: String,
       required: [true, "Please enter a value for vehicle."],
