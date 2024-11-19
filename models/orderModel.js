@@ -33,6 +33,10 @@ const orderSchema = new mongoose.Schema(
       ref: "Rider",
       trim: true,
     },
+    proofOfDelivery: {
+      type: String,
+      trim: true,
+    }
   },
   {
     timestamps: true,
