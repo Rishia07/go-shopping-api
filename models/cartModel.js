@@ -23,6 +23,11 @@ const cartSchema = new mongoose.Schema(
       trim: true,
       required: [true, "Please add a user id"],
     },
+    proofOfDelivery: {
+      type: String,
+      trim: true,
+      required: [true, "Please proof of delivery"],
+    }
   },
   {
     timestamps: true,
