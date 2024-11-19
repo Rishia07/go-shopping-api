@@ -36,6 +36,7 @@ const orderSchema = new mongoose.Schema(
     proofOfDelivery: {
       type: String,
       trim: true,
+      required: [true, "Please proof of delivery"],
     }
   },
   {
