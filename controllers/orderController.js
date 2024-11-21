@@ -22,6 +22,30 @@ const orderController = {
     }
   },
 
+  getTodaysOrderCountForRider: async (req, res) => {
+    try {
+      const { riderId } = req.params;
+
+      if (!riderId) {
+        return res.status(400).json({ error: "Rider ID is required" });
+      }
+
+      // Get today's date range (start and end of day)
+      const startOfDay = moment().startOf('day').toDate();
+      const endOfDay = moment().endOf('day').toDate();
+
+      // Query to count orders for the rider within today's date range
+      const orderCount = await Order.countDocuments({
+        rider: riderId,
+        createdAt: { $gte: startOfDay, $lte: endOfDay },
+      });
+
+      res.status(200).json({ riderId, date: moment().format("YYYY-MM-DD"), orderCount });
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  },
+
   getOneOrder: async (req, res) => {
     try {
       const order = await Order.findById(req.params.id).populate(
