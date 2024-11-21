@@ -31,8 +31,11 @@ const orderController = {
       }
 
       // Get today's date range (start and end of day)
-      const startOfDay = moment().startOf('day').toDate();
-      const endOfDay = moment().endOf('day').toDate();
+      
+      const startOfDay = new Date();
+      startOfDay.setHours(0, 0, 0, 0); // Set to midnight
+      const endOfDay = new Date();
+      endOfDay.setHours(23, 59, 59, 999);
 
       // Query to count orders for the rider within today's date range
       const orderCount = await Order.countDocuments({
