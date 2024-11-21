@@ -43,7 +43,7 @@ const orderController = {
         createdAt: { $gte: startOfDay, $lte: endOfDay },
       });
 
-      res.status(200).json({ riderId, date: moment().format("YYYY-MM-DD"), orderCount });
+      res.status(200).json({ riderId, date: new Date(), orderCount });
     } catch (err) {
       res.status(500).json({ error: err.message });
     }
