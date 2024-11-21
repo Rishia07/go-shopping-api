@@ -40,7 +40,8 @@ const orderController = {
       // Query to count orders for the rider within today's date range
       const orderCount = await Order.countDocuments({
         rider: riderId,
-        createdAt: { $gte: startOfDay, $lte: endOfDay },
+        updatedAt: { $gte: startOfDay, $lte: endOfDay },
+        status: { $in: ["Delivered", "Received"] }, // Check status
       });
 
       res.status(200).json({ riderId, date: new Date(), orderCount });
